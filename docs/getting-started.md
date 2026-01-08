@@ -147,6 +147,23 @@ Audit → Triage → Plan → Implement → Review
 
 ---
 
+## For Onboarding
+
+**How fast new members become productive is one of the most important metrics for a team.**
+
+Many teams leave onboarding to chance. Plan Stack treats it as a first-class concern.
+
+With Plan Stack, new members learn by writing plans:
+
+1. Investigate assigned area with Claude (`docs/` provides existing context)
+2. Write a plan — even for a small fix
+3. Senior reviews intent before code
+4. Implement after approval
+
+Questions become documented answers. Each plan becomes a reference for future members. As a side effect, senior engineers stop repeating the same explanations — Claude and accumulated docs handle it.
+
+---
+
 ## Next Steps
 
 - [Directory Structure](directory-structure.md)
