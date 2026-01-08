@@ -51,43 +51,101 @@ Place the following templates in `docs/templates/`:
 - `plan-template.md` - Template for implementation plans
 - `review-template.md` - Template for reviews
 
-## 3. Instruct Your AI Assistant
+## 3. Configure CLAUDE.md
 
-Before starting implementation, give your AI assistant these instructions:
+Add the following to your project's `CLAUDE.md` to instruct Claude Code:
 
-```
-Before implementing a new feature, check docs/plans/ for similar past implementations.
-Reference relevant plans and create a new plan for the current task.
+```markdown
+## Plan Stack Workflow
+
+Before implementing any feature or fix:
+1. Search docs/plans/ for similar past implementations
+2. Enter Plan Mode (Shift+Tab twice in Claude Code)
+3. Create implementation plan in docs/plans/YYYYMMDD_feature_name.md
+4. Get human approval before coding
+5. Exit Plan Mode and implement
+
+After implementation:
+- AI review compares plan vs code
+- Move completed plan to docs/plans/completed/
 ```
 
 ## 4. Workflow
 
-### Research
+### Step 1: Research
 
-Have the AI search `docs/plans/` for related past implementation plans.
+Before any implementation, search for similar past work:
 
-### Plan
+```
+Search docs/plans/ for implementations related to [your feature].
+```
 
-AI generates an implementation plan. Human reviews and approves.
+### Step 2: Plan
+
+Enter Plan Mode in Claude Code (`Shift+Tab` twice) and create a plan:
 
 ```bash
 # Plan file naming convention
 docs/plans/YYYYMMDD_feature_name.md
+
+# Examples
+docs/plans/20250108_user_authentication.md
+docs/plans/20250108_csv_export.md
 ```
 
-### Implement
+The plan should include:
+- Task overview
+- Research findings (related past plans, affected files)
+- Implementation approach
+- Files to modify
 
-Write code following the approved plan.
+**Wait for human approval before proceeding.**
 
-### Review
+### Step 3: Implement
 
-AI compares the plan vs actual implementation, detecting any drift.
+Exit Plan Mode and implement following the approved plan.
+
+### Step 4: Review
+
+AI compares the plan vs actual implementation:
+- What was completed as planned?
+- What deviated (drift) and why?
+- Lessons learned for future plans
+
+Archive completed plans:
+```bash
+mv docs/plans/20250108_feature.md docs/plans/completed/
+```
 
 ## 5. Continuous Improvement
 
 - Never delete plans—accumulate them
 - Reference past plans when implementing similar features
 - Apply review insights to future plans
+
+---
+
+## For Existing Projects
+
+Adopting Plan Stack on a large, existing codebase? Start with finding problems, not with "let's do Plan Stack."
+
+```
+Audit → Triage → Plan → Implement → Review
+```
+
+1. **Audit** — Have Claude analyze your codebase and identify issues (tech debt, performance, security)
+2. **Triage** — Convert findings to GitHub Issues. Human prioritizes.
+3. **Plan** — Pick top priority issue, create implementation plan
+4. **Implement** — Opus implements following the plan
+5. **Review** — Compare plan vs code, close the issue
+
+**Why this works:**
+- "Find problems" is easier than "adopt a methodology"
+- Uses GitHub Issues you already have
+- Human focuses on prioritization (the essential work)
+- Plans accumulate naturally with each cycle
+
+---
 
 ## Next Steps
 
