@@ -203,6 +203,23 @@ List of files that will be changed.
 
 ---
 
+## Promotion Criteria
+
+Most plans stay in `completed/`. Promote only the vital few.
+
+| Destination | Criteria |
+|-------------|----------|
+| `architecture/` | Affects 3+ features or defines system boundaries |
+| `features/` | Referenced by multiple future plans |
+
+**Example:**
+- A plan for "add user logout" → stays in `completed/`
+- A plan that established the authentication architecture → promote to `architecture/auth/`
+
+Don't over-organize. Promotion is optional, not required.
+
+---
+
 ## Adding New Directories
 
 When new domains or features emerge, create subdirectories under the appropriate parent.
