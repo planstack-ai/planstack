@@ -14,12 +14,12 @@ docs/
 │
 ├── architecture/             # Design & architecture
 │   ├── billing/              # Billing system design
-│   └── kurakoma/             # Kurakoma service design
+│   └── service_c/            # Service C design
 │
 ├── features/                 # Feature documentation
-│   ├── house_cleaning/       # House cleaning service
-│   ├── maid/                 # Maid service
-│   └── kurakoma/             # Kurakoma service
+│   ├── service_a/            # Service A
+│   ├── service_b/            # Service B
+│   └── service_c/            # Service C
 │
 ├── guides/                   # Developer guides & how-tos
 │
@@ -48,7 +48,7 @@ Store implementation plans created before making changes to the codebase.
 **File Naming Convention:**
 - `YYYYMMDD_{feature_name}.md`
 - Date prefix enables chronological sorting (similar to Rails migrations)
-- Example: `20251218_annual_fee_target_service_plan.md`
+- Example: `20251218_annual_fee_calculation_plan.md`
 
 ### architecture/ - Design & Architecture
 
@@ -79,24 +79,24 @@ Store specifications, table structures, and API endpoints for each feature.
 Domains are business-context clusters, not mechanical groupings by table prefix. Related functionality stays within each domain.
 
 Example:
-- `maid_staffs` and `maid_staff_salaries` belong in `maid/` domain (not a separate "staff" domain)
-- `order_bills` relates to both maid/house_cleaning, but is documented within each service's billing section
+- `staffs` and `staff_salaries` belong in `service_b/` domain (not a separate "staff" domain)
+- `order_bills` relates to multiple services, but is documented within each service's billing section
 
 **Domain examples:**
 
 | Directory | Description |
 |-----------|-------------|
-| `features/maid/` | Maid service (orders, subscriptions, staff, plans) |
-| `features/house_cleaning/` | House cleaning (orders, partners, vehicles) |
-| `features/kurakoma/` | Kurakoma service |
+| `features/service_a/` | Service A (orders, partners, scheduling) |
+| `features/service_b/` | Service B (orders, subscriptions, staff, plans) |
+| `features/service_c/` | Service C |
 | `features/crm/` | CRM tasks & customer support |
 
-**Large domain structure (maid/ example):**
+**Large domain structure (service_b/ example):**
 
 For larger domains, create subdirectories based on business flow:
 
 ```
-features/maid/
+features/service_b/
 ├── order/                 # Order flow
 │   └── (order → assignment → service → report)
 │
@@ -110,7 +110,7 @@ features/maid/
 │   └── (plan → menu → menu book)
 │
 ├── coupon.md              # Coupons
-├── bus_fee.md             # Transportation fees
+├── transportation_fee.md  # Transportation fees
 └── ...
 ```
 
