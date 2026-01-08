@@ -100,6 +100,8 @@ The plan should include:
 - Implementation approach
 - Files to modify
 
+See [real examples](../examples/plans/) for reference.
+
 **Wait for human approval before proceeding.**
 
 ### Step 3: Implement

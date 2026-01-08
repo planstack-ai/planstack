@@ -50,6 +50,7 @@ Knowledge compounds. Context is never lost.
 
 - [Directory Structure](docs/directory-structure.md)
 - [Templates](docs/templates/)
+- [Example Plans](examples/plans/)
 
 ## Origin
 
