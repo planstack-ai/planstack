@@ -2,6 +2,8 @@
 
 **AI-native development workflow that compounds knowledge over time.**
 
+*Stop losing context. Start stacking plans.*
+
 ## What is Plan Stack?
 
 Plan Stack is a development methodology for the AI era where implementation plans are accumulated, referenced, and reviewed—creating a self-reinforcing knowledge loop.
