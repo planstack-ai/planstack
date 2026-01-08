@@ -178,6 +178,7 @@ The bottleneck shifts from "writing documentation" to "reviewing it."
 - [Directory Structure](docs/directory-structure.md)
 - [Templates](docs/templates/)
 - [Example Plans](examples/plans/)
+- [Real-world docs/ Structure Guide](examples/docs-structure-guide.md)
 
 ---
 
