@@ -26,6 +26,7 @@ Research → Plan → Implement → Review → (repeat)
 3. **Include plans in pull requests** — PRs contain both code and the reasoning behind it
 4. **Automated review references plans** — Claude GitHub Actions compares implementation against intent
 5. **Stack plans over time** — Each plan references past plans, building institutional knowledge
+6. **Plans are save points** — Context windows fill up. Saved plans let you `/clear` and restore with "read the plan and continue."
 
 **Why This Works:**
 
