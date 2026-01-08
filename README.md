@@ -1,89 +1,121 @@
 # You are losing context every time you use AI to code.
 
-Six months later:
-- You don't remember why this was implemented this way
-- The AI confidently suggests breaking changes
-- Fixing a bug requires re-reading dozens of files
+Six months after a feature was implemented:
 
-This is not a tooling problem. This is a **context preservation problem**.
+- You don't remember **why** it was designed this way
+- The AI confidently suggests changes that break invariants
+- Fixing a bug requires re-reading dozens of files
+- You hesitate to touch the code because the original intent is gone
+
+The code exists.
+The tests exist.
+**The reasoning does not.**
+
+This is not a tooling problem.
+This is a **context preservation problem**.
 
 ---
 
 ## The Real Problem with AI-assisted Development
 
-The code survives. The reasoning doesn't.
+AI coding assistants are extremely good at:
+- Reading code
+- Writing code
+- Refactoring code
 
-Every feature you build with AI involves:
-- Reading existing code to understand patterns
-- Exploring approaches that don't work
-- Making dozens of micro-decisions
+They are extremely bad at one thing:
 
-When you're done, only the code remains. The *judgment* behind it vanishes.
+**Recovering the original intent behind an implementation.**
 
-Next time you (or anyone else) touch that code:
-- The AI starts from zero
-- You re-investigate the same questions
-- You risk breaking things the original implementation carefully avoided
+That intent usually lives in:
+- Temporary research
+- Dead ends that were explored and rejected
+- Trade-offs that were discussed but never written down
+- Mental context that disappears after `/clear`
 
-**This isn't because AI is bad. It's because nothing captures the research.**
+Once that context is gone, both humans and AI are forced to:
+- Re-read large parts of the codebase
+- Re-discover edge cases
+- Re-make the same decisions again
+
+This cost repeats forever.
 
 ---
 
-## Why Existing Practices Fail
+## Why Existing Practices Don't Solve This
 
-| Approach | Why It Fails |
+| Approach | Why it fails |
 |----------|--------------|
-| Documentation | Written late, or never. Outdated within weeks. |
-| Code comments | Too local. Explains "what", not "why this approach". |
-| Long AI sessions | Context degrades before it overflows. Quality drops silently. |
+| Documentation | Written late, outdated quickly, or never read |
+| Code comments | Too local — they explain *what*, not *why* |
+| Long AI sessions | Context degrades long before the token limit |
+| Code reviews | Capture correctness, not original reasoning |
 
-The problem is structural, not motivational. You can't document what you've already forgotten.
+The problem is structural.
 
----
-
-## Plan Stack
-
-**A development workflow where implementation plans are first-class artifacts.**
-
-Plans are written *before* coding, reviewed by humans, and accumulated as long-term memory for both humans and AI.
-
-```
-Research → Plan → Implement → Review → (repeat)
-```
-
-Each new task references past plans. Knowledge compounds. Context is never lost.
+Implementation decisions are made **before** code exists,
+but most practices try to document them **after** the fact.
 
 ---
 
-## Plans are Distilled Research
+## Introducing Plan Stack
 
-Implementing a feature requires reading thousands of lines of code, exploring dead ends, and making dozens of micro-decisions.
+**Plan Stack** is an AI-native development workflow that treats
+**implementation plans as first-class artifacts**.
 
-A plan captures all of this in 200-300 lines.
+Instead of letting research and decisions disappear,
+they are captured in lightweight plans and accumulated over time.
 
-Six months later, when a bug appears or requirements change, you (and Claude) get the benefit of that original research—without re-consuming the original context.
+These plans become:
+- Long-term memory for humans
+- External context for AI
+- A reliable starting point after `/clear`
 
-**Without a plan:** Re-read 50 files, re-discover edge cases, re-make decisions.
-**With a plan:** Read 300 lines, understand intent, modify with confidence.
+---
+
+## Plans Are Distilled Research
+
+Implementing a feature usually involves:
+- Reading thousands of lines of code
+- Exploring multiple approaches
+- Hitting dead ends
+- Making dozens of small but important decisions
+
+A good plan captures all of that in **200–300 lines**.
+
+Six months later:
+
+- **Without a plan**
+  Re-read 50 files. Re-discover everything. Re-make decisions.
+
+- **With a plan**
+  Read one file. Understand intent. Modify with confidence.
+
+Plans compress large, expensive context into something both
+humans and AI can reliably consume.
 
 ---
 
 ## Context Degrades Before It Overflows
 
-200K tokens sounds huge, but complex tasks fill it fast.
+200K tokens sounds huge.
 
-As context fills, Claude gradually forgets earlier instructions and becomes repetitive. The problem isn't hitting the limit—it's degradation well before the limit.
+In practice:
+- Large codebases fill it quickly
+- Earlier instructions fade
+- The AI becomes repetitive or loses constraints
 
-**The fix:**
-1. Research until you have a clear approach
-2. Save plan to file
-3. `/clear`
-4. "Read docs/plans/xxx.md and implement"
+The real problem isn't hitting the limit —
+it's **losing fidelity long before you do**.
 
-You restart at 0% with all knowledge preserved.
+Plan Stack embraces this reality instead of fighting it.
 
-Without a plan, `/clear` means starting over.
-With a plan, it's a fresh start with full context.
+1. Research until the approach is clear
+2. Write the plan
+3. Clear the context
+4. Resume from the plan
+
+You restart at 0% context — without starting over.
 
 ---
 
