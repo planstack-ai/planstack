@@ -17,6 +17,19 @@ Plan Stack is a development methodology for the AI era where implementation plan
 - AI coding assistants start from zero every time
 - Code reviews lack context about intent
 
+## Why Now?
+
+Plan Stack is built on a key insight: **Claude Opus-level reasoning makes high-quality plans practical.**
+
+Previous AI assistants could generate text, but not reliable implementation plans. They lacked the ability to:
+- Investigate codebases thoroughly
+- Understand architectural context
+- Produce plans worth reviewing
+
+With Claude Code, the AI can research your codebase, reference past decisions, and generate plans that humans actually want to approve. The bottleneck shifts from "writing documentation" to "reviewing it."
+
+The reason not to document has disappeared.
+
 ## The Solution
 
 | Phase | What Happens |
@@ -29,14 +42,9 @@ Plan Stack is a development methodology for the AI era where implementation plan
 Plans accumulate in `docs/plans/`. Each new task references past plans.
 Knowledge compounds. Context is never lost.
 
-## Why Now?
-
-With models like Claude Opus, generating quality plans costs nearly zero.
-The reason not to document has disappeared.
-
 ## Quick Start
 
-→ [Getting Started](docs/getting-started.md)
+[Getting Started](docs/getting-started.md)
 
 ## Documentation
 
