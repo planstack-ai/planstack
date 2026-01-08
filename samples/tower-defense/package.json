@@ -1,0 +1,17 @@
+{
+  "name": "tower-defense",
+  "version": "0.1.0",
+  "description": "Tower Defense game built with Phaser 3 - Plan Stack sample project",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
