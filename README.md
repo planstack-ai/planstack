@@ -1,167 +1,168 @@
-# You are losing context every time you use AI to code.
+# Plan Stack
 
-Six months after a feature was implemented:
+**Stop stuffing context. Start engineering it.**
 
-- You don't remember **why** it was designed this way
-- The AI confidently suggests changes that break invariants
-- Fixing a bug requires re-reading dozens of files
-- You hesitate to touch the code because the original intent is gone
+A development workflow built on Context Engineering principles
+for reliable AI-assisted system development.
 
-The code exists.
-The tests exist.
-**The reasoning does not.**
-
-This is not a tooling problem.
-This is a **context preservation problem**.
+[See the Principles](#the-three-principles-of-context-engineering) · [See the Workflow](#plan-stack-these-principles-in-practice)
 
 ---
 
-## The Real Problem with AI-assisted Development
+## The Problem: Context Stuffing Doesn't Scale
 
-AI coding assistants are extremely good at:
-- Reading code
-- Writing code
-- Refactoring code
+In two years, context windows grew 62×—from 32K to 2M tokens.
 
-They are extremely bad at one thing:
+The intuition was obvious: *"If everything fits, just put everything in."*
 
-**Recovering the original intent behind an implementation.**
+It doesn't work.
 
-That intent usually lives in:
-- Temporary research
-- Dead ends that were explored and rejected
-- Trade-offs that were discussed but never written down
-- Mental context that disappears after `/clear`
+- **Lost in the Middle**: Information in the middle of long contexts is systematically ignored (Liu et al., 2023)
+- **The 75% Rule**: Claude Code's quality *improved* when Anthropic limited context usage to 75%—leaving 25% empty
+- **Capacity ≠ Capability**: A 2M-token window is not 2M tokens of understanding
 
-Once that context is gone, both humans and AI are forced to:
-- Re-read large parts of the codebase
-- Re-discover edge cases
-- Re-make the same decisions again
+The uncomfortable truth:
 
-This cost repeats forever.
+> **A context window is not storage. It is cognitive load.**
 
 ---
 
-## Why Existing Practices Don't Solve This
+## Why Existing Practices Fail
 
-| Approach | Why it fails |
-|----------|--------------|
-| Documentation | Written late, outdated quickly, or never read |
-| Code comments | Too local — they explain *what*, not *why* |
-| Long AI sessions | Context degrades long before the token limit |
-| Code reviews | Capture correctness, not original reasoning |
+| Approach | Why It Breaks |
+|----------|---------------|
+| **Long chat sessions** | Context degrades long before the token limit. Earlier instructions fade. The model becomes repetitive or contradictory. |
+| **Dump the whole repo** | Signal drowns in noise. The model misinterprets architectural intent because it can't distinguish core from peripheral. |
+| **Detailed documentation** | More detail ≠ better understanding. Comprehensive docs produce unfocused responses that drift from the actual question. |
+| **RAG everything** | Retrieval finds *related* content, not *relevant* content. Without curation, you're still stuffing context—just automatically. |
 
-The problem is structural.
+These approaches share a common assumption:
 
-Implementation decisions are made **before** code exists,
-but most practices try to document them **after** the fact.
+> *"If the model can access it, the model can use it."*
 
----
+This assumption is wrong.
 
-## Introducing Plan Stack
-
-**Plan Stack** is an AI-native development workflow that treats
-**implementation plans as first-class artifacts**.
-
-Instead of letting research and decisions disappear,
-they are captured in lightweight plans and accumulated over time.
-
-These plans become:
-- Long-term memory for humans
-- External context for AI
-- A reliable starting point after `/clear`
+Access is not understanding. Retrieval is not reasoning.
+The bottleneck was never capacity—it was **curation**.
 
 ---
 
-## Plans Are Distilled Research
+## The Three Principles of Context Engineering
 
-Implementing a feature usually involves:
+### Principle 1: Isolation
+
+**Don't dump the monolith. Scope by responsibility.**
+
+Provide the smallest effective context for the task—not the smallest *file*, but the smallest *bounded context*.
+
+For "Add OAuth2 authentication," the model needs:
+- `User` model, `SessionController`, `routes.rb`, auth middleware
+
+It does *not* need:
+- Billing module, CSS, unrelated endpoints, other test fixtures
+
+Ask: *"What is the minimum context required to solve this specific problem?"*
+
+---
+
+### Principle 2: Chaining
+
+**Pass artifacts, not histories.**
+
+Break work into stages. Each stage receives the *output* of the previous stage—not the entire conversation.
+```
+Plan → Execute → Reflect
+```
+
+- **Plan**: Produces a structured implementation plan
+- **Execute**: Receives *only the plan*, generates code
+- **Reflect**: Reviews code against the plan in fresh context
+
+This keeps signal density high and context fresh.
+
+Ask: *"Can I decompose this into stages that pass summaries, not transcripts?"*
+
+---
+
+### Principle 3: Headroom
+
+**Never run at 100% capacity. Reserve space to reason.**
+
+Token limits cover input *and* output combined. Stuffing 195K into a 200K window leaves almost no room for the model to think.
+
+Claude Code's quality improved dramatically when Anthropic enforced the 75% rule—not despite the constraint, but *because of it*.
+
+Ask: *"Have I left enough space for the model to think—not just respond?"*
+
+---
+
+## Plan Stack: These Principles in Practice
+
+Plan Stack is a development workflow that implements all three principles simultaneously.
+
+### The Workflow
+
+| Phase | What Happens | Principles Applied |
+|-------|--------------|-------------------|
+| **Research** | AI checks `docs/plans/` for similar past implementations | **Isolation**: Starts from curated context, not raw codebase |
+| **Plan** | AI generates implementation plan, human reviews | **Headroom**: No implementation yet—reasoning gets full capacity |
+| **Execute** | Code with the plan as guide | **Chaining**: Receives plan artifact, not conversation history |
+| **Review** | AI compares plan vs implementation, detects drift | **Isolation + Chaining**: Fresh context, artifact-based evaluation |
+
+### Why Plans Are First-Class Artifacts
+
+Implementing a feature involves:
 - Reading thousands of lines of code
 - Exploring multiple approaches
 - Hitting dead ends
-- Making dozens of small but important decisions
+- Making dozens of small decisions
 
 A good plan captures all of that in **200–300 lines**.
 
 Six months later:
 
-- **Without a plan**
-  Re-read 50 files. Re-discover everything. Re-make decisions.
+| Without a plan | With a plan |
+|----------------|-------------|
+| Re-read 50 files | Read one file |
+| Re-discover everything | Understand intent |
+| Re-make decisions | Modify with confidence |
 
-- **With a plan**
-  Read one file. Understand intent. Modify with confidence.
+Plans are **curated context**—expensive research distilled into something both humans and AI can reliably consume.
 
-Plans compress large, expensive context into something both
-humans and AI can reliably consume.
+### The `/clear` Pattern
 
----
+Context degrades long before it overflows.
 
-## Context Degrades Before It Overflows
-
-200K tokens sounds huge.
-
-In practice:
-- Large codebases fill it quickly
-- Earlier instructions fade
-- The AI becomes repetitive or loses constraints
-
-The real problem isn't hitting the limit —
-it's **losing fidelity long before you do**.
-
-Plan Stack embraces this reality instead of fighting it.
+Plan Stack embraces this:
 
 1. Research until the approach is clear
 2. Write the plan
 3. Clear the context
 4. Resume from the plan
 
-You restart at 0% context — without starting over.
+You restart at 0% context—**without starting over**.
 
----
-
-## The One Rule That Makes Everything Work
-
-Add this line to your `CLAUDE.md`:
-
-```
-Search docs/plans/ for similar past implementations before planning.
-```
-
-This single line creates the self-reinforcing loop:
-- Claude checks `docs/` first
-- Finds distilled context (hundreds of tokens)
-- Skips reading raw code (tens of thousands of tokens)
-
-Without it, Claude starts from raw code every time.
-With it, Claude leverages accumulated knowledge automatically.
-
----
-
-## The Workflow
-
-| Phase | What Happens |
-|-------|--------------|
-| **Research** | AI checks `docs/` for similar past implementations |
-| **Plan** | AI generates implementation plan, human reviews |
-| **Implement** | Code with the plan as guide |
-| **Review** | AI compares plan vs implementation, detects drift |
-
-Plans accumulate in `docs/plans/`. Each new task references past plans.
+This is Chaining + Headroom in action: explicit handoff through artifacts, fresh context for each phase.
 
 ---
 
 ## Why Now?
 
-Plan Stack is built on a key insight: **Claude Opus-level reasoning makes high-quality plans practical.**
+Plan Stack is built on a key insight:
 
-Previous AI assistants could generate text, but not reliable implementation plans. They lacked the ability to:
-- Investigate codebases thoroughly
-- Understand architectural context
-- Produce plans worth reviewing
+> **Claude Opus-level reasoning makes high-quality plans practical.**
 
-With Claude Code, the AI can research your codebase, reference past decisions, and generate plans that humans actually want to approve.
+Previous AI assistants could generate text, but not reliable implementation plans. They lacked:
+- Thorough codebase investigation
+- Architectural context understanding
+- Structured output that humans actually want to review
 
-The bottleneck shifts from "writing documentation" to "reviewing it."
+With models like Claude Opus 4 / Sonnet 4, the AI can:
+- Research your codebase deeply
+- Reference past decisions from `docs/plans/`
+- Generate plans worth approving
+
+The bottleneck shifts from *"writing documentation"* to *"reviewing it."*
 
 **The reason not to document has disappeared.**
 
