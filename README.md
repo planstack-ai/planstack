@@ -195,6 +195,28 @@ No.
 
 The cost of deletion: A bug surfaces 6 months later, and the reasoning behind the original implementation is gone. Re-research costs 10x more than keeping the file.
 
+**"Is this only for Claude?"**
+
+No. The principles apply to any LLM with a large context window. Plan Stack workflows have been tested primarily with Claude, but the patterns—Isolation, Chaining, Headroom—are model-agnostic.
+
+**"Do I need special tooling?"**
+
+No. Plan Stack is a workflow, not a framework. You need:
+- A directory (`docs/plans/`)
+- A text editor
+- An AI assistant that can read files
+
+No dependencies. No install. Just discipline.
+
+---
+
+## References
+
+- Liu et al., "Lost in the Middle: How Language Models Use Long Contexts" (2023)
+  https://arxiv.org/abs/2307.03172
+- Greg Kamradt, "Needle in a Haystack" — Pressure-testing LLM recall across context lengths
+  https://github.com/gkamradt/LLMTest_NeedleInAHaystack
+
 ---
 
 ## Origin
