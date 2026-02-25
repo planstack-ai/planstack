@@ -155,6 +155,6 @@ You restart at 0% context—**without starting over**.
 
 ## Related
 
-- [Getting Started](../getting-started.md)
-- [Directory Structure](../directory-structure.md)
+- [Getting Started](getting-started.md)
+- [Directory Structure](directory-structure.md)
 - [Features](features.md)

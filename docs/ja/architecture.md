@@ -155,6 +155,6 @@ Plan Stack は **Context Engineering（コンテキストエンジニアリン�
 
 ## 関連
 
-- [Getting Started](../getting-started.md)
-- [Directory Structure](../directory-structure.md)
+- [Getting Started](getting-started.md)
+- [ディレクトリ構造](directory-structure.md)
 - [機能](features.md)

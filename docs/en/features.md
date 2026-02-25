@@ -222,6 +222,6 @@ Plan Stack scales with codebase size.
 
 ## Related
 
-- [Getting Started](../getting-started.md)
+- [Getting Started](getting-started.md)
 - [Architecture](architecture.md)
 - [Templates](../templates/)

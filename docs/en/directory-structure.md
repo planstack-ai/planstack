@@ -239,4 +239,4 @@ mkdir -p docs/architecture/new_category/
 ## Related Links
 
 - [Getting Started](getting-started.md)
-- [Templates](templates/)
+- [Templates](../templates/)

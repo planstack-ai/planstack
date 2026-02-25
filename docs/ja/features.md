@@ -222,6 +222,6 @@ Plan Stack はコードベースのサイズに応じてスケールします。
 
 ## 関連
 
-- [Getting Started](../getting-started.md)
+- [Getting Started](getting-started.md)
 - [アーキテクチャ](architecture.md)
 - [テンプレート](../templates/)
