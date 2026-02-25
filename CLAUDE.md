@@ -52,13 +52,23 @@ Share this methodology globally so that teams everywhere can benefit from AI-nat
 
 ```
 docs/
+├── README.md               # Documentation index (language selector)
+├── en/                     # English documentation
+│   ├── getting-started.md
+│   ├── architecture.md
+│   ├── features.md
+│   └── directory-structure.md
+├── ja/                     # Japanese documentation
+│   ├── getting-started.md
+│   ├── architecture.md
+│   ├── features.md
+│   └── directory-structure.md
 ├── plans/                  # Implementation plans (with completed/ for archives)
-├── architecture/           # Design & architecture docs
-├── features/               # Feature documentation by domain
-├── guides/                 # Developer guides & how-tos
-├── templates/              # Plan and review templates
-├── getting-started.md      # Introduction and setup guide
-└── directory-structure.md  # Recommended directory organization
+└── templates/              # Plan and review templates
+
+.claude-plugin/             # Claude Code plugin manifest
+skills/                     # Plugin skills (/plan-stack:init)
+agents/                     # Plugin agents (docs-navigator)
 ```
 
 ## Development Guidelines

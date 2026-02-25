@@ -1,6 +1,6 @@
 ---
 name: init
-description: Scaffold Plan Stack workflow in the current project. Creates docs/plans/, templates, .claude/settings.json, docs-navigator agent, and adds Plan Stack section to CLAUDE.md.
+description: Scaffold Plan Stack workflow in the current project. Creates docs/plans/, templates, docs/README.md, .claude/settings.json, docs-navigator agent, and adds Plan Stack section to CLAUDE.md.
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 argument-hint: []
@@ -30,13 +30,40 @@ Read the following template files from this skill's directory and write them to 
 
 **Skip if the file already exists.** Do not overwrite.
 
-### 3. Create docs-navigator agent
+### 3. Create docs/README.md
+
+Create `docs/README.md` as a navigation hub for the project's documentation. The content should list all documents under `docs/` with links and brief descriptions.
+
+If `docs/README.md` already exists, skip.
+
+Example:
+
+```markdown
+# Documentation
+
+Project documentation index.
+
+## Guides
+
+| Document | Description |
+|----------|-------------|
+| [Templates](templates/) | Plan and review templates |
+
+## Plans
+
+- [Active plans](plans/)
+- [Completed plans](plans/completed/)
+```
+
+Adapt the content to what actually exists in `docs/` at the time of generation.
+
+### 4. Create docs-navigator agent
 
 Read `templates/docs-navigator.md` from the skill directory → Write to `.claude/agents/docs-navigator.md`
 
 **Skip if the file already exists.**
 
-### 4. Configure .claude/settings.json
+### 5. Configure .claude/settings.json
 
 If `.claude/settings.json` exists, add `"plansDirectory": "docs/plans"` to it (merge, don't overwrite other settings).
 
@@ -48,7 +75,7 @@ If it does not exist, create it:
 }
 ```
 
-### 5. Add Plan Stack section to CLAUDE.md
+### 6. Add Plan Stack section to CLAUDE.md
 
 If `CLAUDE.md` exists at the project root, check if it already contains a "Plan Stack" section. If not, append the following section:
 
@@ -72,13 +99,14 @@ Reference: https://github.com/planstack-ai/planstack
 
 If `CLAUDE.md` does not exist, create it with the section above.
 
-### 6. Report
+### 7. Report
 
 After completion, display a summary:
 
 ```
 Plan Stack initialized!
 
+  docs/README.md           — Documentation index
   docs/plans/              — Implementation plans
   docs/plans/completed/    — Archived plans
   docs/templates/          — Plan & review templates

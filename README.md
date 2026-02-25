@@ -187,13 +187,14 @@ This generates `docs/plans/`, templates, `.claude/settings.json`, docs-navigator
 
 ### Option 2: Manual Setup
 
-[Getting Started →](docs/getting-started.md)
+[Getting Started →](docs/en/getting-started.md)
 
 ---
 
 ## Documentation
 
-- [Directory Structure](docs/directory-structure.md)
+- [All Docs](docs/) (English / 日本語)
+- [Directory Structure](docs/en/directory-structure.md)
 - [Templates](docs/templates/)
 - [Example Plans](examples/plans/)
 - [Real-world docs/ Structure Guide](examples/docs-structure-guide.md)
