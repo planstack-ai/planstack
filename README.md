@@ -170,6 +170,23 @@ The bottleneck shifts from *"writing documentation"* to *"reviewing it."*
 
 ## Quick Start
 
+### Option 1: Claude Code Plugin (Recommended)
+
+```bash
+# Add the Plan Stack marketplace
+/plugin marketplace add planstack-ai/planstack
+
+# Install the plugin
+/plugin install plan-stack@planstack
+
+# In any project, run:
+/plan-stack:init
+```
+
+This generates `docs/plans/`, templates, `.claude/settings.json`, docs-navigator agent, and adds the Plan Stack workflow to your `CLAUDE.md` — all in one command.
+
+### Option 2: Manual Setup
+
 [Getting Started →](docs/getting-started.md)
 
 ---
@@ -201,12 +218,9 @@ No. The principles apply to any LLM with a large context window. Plan Stack work
 
 **"Do I need special tooling?"**
 
-No. Plan Stack is a workflow, not a framework. You need:
-- A directory (`docs/plans/`)
-- A text editor
-- An AI assistant that can read files
+No. Plan Stack is a workflow, not a framework. You can set up manually with just a directory and a text editor.
 
-No dependencies. No install. Just discipline.
+For Claude Code users, the [Plan Stack plugin](#quick-start) automates the setup with `/plan-stack:init`.
 
 ---
 

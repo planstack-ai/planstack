@@ -25,27 +25,32 @@ Open http://localhost:5173 in your browser.
 
 ```
 samples/tower-defense/
+├── CLAUDE.md                    # Plan Stack workflow instructions
+├── .claude/
+│   └── settings.json            # plansDirectory config
 ├── docs/
-│   └── plans/           # Implementation plans (Plan Stack)
+│   ├── plans/                   # Active implementation plans
+│   │   └── completed/           # Archived completed plans
+│   └── templates/               # Plan & review templates
 ├── src/
-│   ├── main.js          # Phaser game config
+│   ├── main.js                  # Phaser game config
 │   ├── scenes/
-│   │   └── GameScene.js # Main game scene
+│   │   └── GameScene.js         # Main game scene
 │   ├── entities/
-│   │   ├── Enemy.js     # Enemy class
-│   │   ├── Tower.js     # Tower class
+│   │   ├── Enemy.js             # Enemy class
+│   │   ├── Tower.js             # Tower class
 │   │   └── Projectile.js
 │   └── config/
-│       └── mapData.js   # Map configuration
+│       └── mapData.js           # Map configuration
 ├── index.html
 └── package.json
 ```
 
 ## Development Phases
 
-See `docs/plans/` for detailed implementation plans.
+See `docs/plans/` for active plans and `docs/plans/completed/` for archives.
 
-- [x] **Phase 1**: Core mechanics (enemies, towers, combat)
+- [x] **Phase 1**: Core mechanics — [plan](docs/plans/completed/20250108_phase1_core_mechanics.md)
 - [ ] **Phase 2**: Game loop (waves, lives, gold)
 - [ ] **Phase 3**: Variety (tower types, enemy types)
 - [ ] **Phase 4**: Depth (upgrades, abilities)

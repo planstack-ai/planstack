@@ -3,7 +3,8 @@
 .vscode/
 
 # Claude Code
-.claude/
+.claude/*
+!.claude/settings.json
 
 # OS
 .DS_Store

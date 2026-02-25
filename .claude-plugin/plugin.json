@@ -1,0 +1,18 @@
+{
+  "name": "plan-stack",
+  "description": "Plan Stack - AI-native development workflow built on Context Engineering. Research → Plan → Implement → Review.",
+  "version": "0.1.0",
+  "author": {
+    "name": "X-HACK Inc."
+  },
+  "homepage": "https://github.com/planstack-ai/planstack",
+  "repository": "https://github.com/planstack-ai/planstack",
+  "license": "MIT",
+  "keywords": [
+    "plan-stack",
+    "context-engineering",
+    "ai-development",
+    "workflow",
+    "documentation"
+  ]
+}

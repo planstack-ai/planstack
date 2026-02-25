@@ -1,0 +1,20 @@
+{
+  "name": "planstack",
+  "owner": {
+    "name": "X-HACK Inc."
+  },
+  "metadata": {
+    "description": "Plan Stack methodology plugins for AI-native development"
+  },
+  "plugins": [
+    {
+      "name": "plan-stack",
+      "source": ".",
+      "description": "Plan Stack workflow - Research → Plan → Implement → Review",
+      "version": "0.1.0",
+      "author": {
+        "name": "X-HACK Inc."
+      }
+    }
+  ]
+}
