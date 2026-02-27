@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "plan-stack",
-      "source": ".",
+      "source": "./",
       "description": "Plan Stack workflow - Research → Plan → Implement → Review",
       "version": "0.1.0",
       "author": {
